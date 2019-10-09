@@ -26,9 +26,6 @@ proguard/
 # Log Files
 *.log
 
-# Android Studio Navigation editor temp files
-.navigation/
-
 # Android Studio captures folder
 captures/
 
@@ -41,6 +38,7 @@ captures/
 .idea/dictionaries
 .idea/libraries
 .idea/caches
+.idea/
 
 # Keystore files
 # Uncomment the following line if you do not want to check your keystore files in.
@@ -49,8 +47,6 @@ captures/
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
 
 # Freeline
 freeline.py
