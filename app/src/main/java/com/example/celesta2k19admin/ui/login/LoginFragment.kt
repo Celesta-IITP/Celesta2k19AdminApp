@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -21,8 +23,10 @@ import retrofit2.Response
 
 class LoginFragment : Fragment() {
     lateinit var preferences: SharedPreferences
-    lateinit var textView: TextView
+    lateinit var button_login: Button
     lateinit var progressBar: View
+    lateinit var loginEmail: EditText
+    lateinit var loginPassword: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,19 +34,21 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_login, container, false)
-        textView = rootView.findViewById(R.id.text_login)
+        button_login = rootView.findViewById(R.id.button_login)
+        loginEmail = rootView.findViewById(R.id.editext_login_email)
+        loginPassword = rootView.findViewById(R.id.editext_login_password)
         progressBar = rootView.findViewById(R.id.layout_progress)
         preferences = context!!.getSharedPreferences(Constants.PREF_FILENAME, 0)
         if (!preferences.getBoolean("login_status", false))
-            textView.text = "Tap to login"
+            button_login.text = "Tap to login"
         else
-            textView.text = "Already Logged in"
+            button_login.text = "Already Logged in"
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textView.setOnClickListener {
+        button_login.setOnClickListener {
             if (!Utils.isNetworkConnected(context))
                 Toast.makeText(context, "Check your internet connection", Toast.LENGTH_SHORT).show()
             else if (preferences.getBoolean("login_status", false))
@@ -55,9 +61,12 @@ class LoginFragment : Fragment() {
     private fun login() {
         progressBar.visibility = View.VISIBLE
 
+        val emailStr = loginEmail.text.toString().trim()
+        val passwordStr = loginPassword.text.toString().trim()
+
         val retofitApi = RetrofitApi.create()
-        val email = RequestBody.create(MediaType.parse("text/plain"), "enter_email")
-        val password = RequestBody.create(MediaType.parse("text/plain"), "enter_password")
+        val email = RequestBody.create(MediaType.parse("text/plain"), emailStr)
+        val password = RequestBody.create(MediaType.parse("text/plain"), passwordStr)
 
 
         val call = retofitApi.login(email, password)
