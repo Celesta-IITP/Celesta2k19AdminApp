@@ -1,13 +1,13 @@
-package com.example.celesta2k19admin.ui.slideshow
+package com.example.celesta2k19admin.ui.CheckinCheckout
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class CheckinCheckoutViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is slideshow Fragment"
+        value = "Click on button to checkin or checkout user by scanning QR code"
     }
     val text: LiveData<String> = _text
 }
