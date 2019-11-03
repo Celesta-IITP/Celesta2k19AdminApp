@@ -36,10 +36,10 @@
         tools:layout="@layout/fragment_share" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.celesta2k19admin.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/nav_accommodation"
+        android:name="com.example.celesta2k19admin.ui.Accommodation.AccommodationFragment"
+        android:label="@string/menu_accommodation"
+        tools:layout="@layout/fragment_accommodation" />
 
     <fragment
         android:id="@+id/nav_scanQr"

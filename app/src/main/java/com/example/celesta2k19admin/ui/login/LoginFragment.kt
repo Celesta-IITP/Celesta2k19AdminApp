@@ -100,6 +100,7 @@ class LoginFragment : Fragment() {
                         response.body()?.permit(),
                         response.body()?.position()
                     )
+                    findNavController().navigate(R.id.nav_login, null)
                 } else if (status == 204)
                     Toast.makeText(context, "User not found", Toast.LENGTH_SHORT).show()
                 else if (status == 405)
@@ -131,4 +132,6 @@ class LoginFragment : Fragment() {
         Toast.makeText(context, "Successfully Logged out", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.nav_login, null)
     }
+
+
 }

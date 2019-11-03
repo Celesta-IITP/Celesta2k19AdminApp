@@ -18,5 +18,7 @@ data class CheckinCheckoutResponse(
         return action
     }
 
-
+    fun message(): List<String> {
+        return message
+    }
 }

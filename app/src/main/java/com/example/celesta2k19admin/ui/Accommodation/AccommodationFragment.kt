@@ -1,4 +1,4 @@
-package com.example.celesta2k19admin.ui.CheckinCheckout
+package com.example.celesta2k19admin.ui.Accommodation
 
 import android.app.ProgressDialog
 import android.content.SharedPreferences
@@ -28,11 +28,10 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CheckinCheckoutFragment : Fragment() {
+class AccommodationFragment : Fragment() {
 
-    private lateinit var aCheckinCheckoutViewModel: CheckinCheckoutViewModel
-    private var scanQrUserButton: Button? = null
-    private var textView: TextView? = null
+    private lateinit var accommodationViewModel: AccommodationViewModel
+    private lateinit var accommodationButton: Button
     lateinit var preferences: SharedPreferences
     private var progressDialog: ProgressDialog? = null
 
@@ -48,40 +47,39 @@ class CheckinCheckoutFragment : Fragment() {
             findNavController().navigate(R.id.nav_login, null)
         }
 
-        aCheckinCheckoutViewModel =
-            ViewModelProviders.of(this).get(CheckinCheckoutViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_checkin_checkout_user, container, false)
-        textView = root.findViewById(R.id.text_slideshow)
-        scanQrUserButton = root.findViewById(R.id.scan_user_qr_button)
-        aCheckinCheckoutViewModel.text.observe(this, Observer {
-            textView?.text = it
+        accommodationViewModel =
+            ViewModelProviders.of(this).get(AccommodationViewModel::class.java)
+        val rootView = inflater.inflate(R.layout.fragment_accommodation, container, false)
+        val textView: TextView = rootView.findViewById(R.id.text_accommodation)
+        accommodationButton = rootView.findViewById(R.id.button_accommodation)
+        accommodationViewModel.text.observe(this, Observer {
+            textView.text = it
         })
         if (arguments?.getString("celestaid") != null) {
             val celestaid: String = arguments?.getString("celestaid").toString()
             Toast.makeText(context, "data: " + celestaid, Toast.LENGTH_SHORT).show()
-            checkUser(celestaid)
+            checkAccommodation(celestaid)
         }
-        return root
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        scanQrUserButton?.setOnClickListener { v ->
-            if (!Utils.isNetworkConnected(context)) {
+        accommodationButton.setOnClickListener { v ->
+            if (!Utils.isNetworkConnected(context))
                 Toast.makeText(context, "Check your internet connection", Toast.LENGTH_SHORT).show()
-            } else {
-                val bundle = bundleOf("fragment_source" to "checkin-checkout")
+            else {
+                val bundle = bundleOf("fragment_source" to "accommodation")
                 findNavController().navigate(R.id.nav_scanQr, bundle)
             }
         }
     }
 
-    private fun checkUser(celestaId: String) {
+    private fun checkAccommodation(celestaId: String) {
         progressDialog = ProgressDialog(context)
         progressDialog?.setCancelable(false)
         progressDialog?.setMessage("Processing...")
         progressDialog?.show()
-
 
         val retrofitApi = RetrofitApi.create()
 
@@ -97,7 +95,7 @@ class CheckinCheckoutFragment : Fragment() {
         val date_time = RequestBody.create(MediaType.parse("text/plain"), datetime)
         Log.e("TAG", "date_time: " + datetime)
 
-        val call = retrofitApi.checkUser(access_token, permit, celestaid, date_time)
+        val call = retrofitApi.checkAccommodation(access_token, permit, celestaid, date_time)
         call.enqueue(object : Callback<CheckinCheckoutResponse> {
             override fun onFailure(call: Call<CheckinCheckoutResponse>, t: Throwable) {
                 progressDialog?.dismiss()
@@ -111,31 +109,13 @@ class CheckinCheckoutFragment : Fragment() {
             ) {
                 progressDialog?.dismiss()
                 val status = response.body()?.status()
-                if (status == "200") {
-                    //Toast.makeText(context, response.body()?.action(), Toast.LENGTH_SHORT).show()
-                    Utils.simpleDialog(
-                        context,
-                        "Scan Result",
-                        "Celesta Id: $celestaId\nStatus: ${response.body()?.action()}"
-                    )
-                } else if (status == "203") {
-                    Toast.makeText(
-                        context,
-                        "Account has not been verified at registration desk",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else if (status == "401") {
-                    Toast.makeText(
-                        context,
-                        "Admin unauthorized to perform this action",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else if (status == "404") {
-                    Toast.makeText(context, "Celesta ID not found", Toast.LENGTH_SHORT).show()
-                } else
-                    Toast.makeText(context, "Invalid status", Toast.LENGTH_SHORT).show()
+                val message = response.body()?.message()
+                var msg = ""
+                message?.forEach {
+                    msg += it + "\n"
+                }
+                Utils.simpleDialog(context, "Scan Result", msg)
             }
         })
-
     }
 }

@@ -21,6 +21,13 @@ interface RetrofitApi {
         @Part("celestaid") celestaid: RequestBody, @Part("date_time") date_time: RequestBody
     ): Call<CheckinCheckoutResponse>
 
+    @Multipart
+    @POST("hospi_checkin_checkout.php")
+    fun checkAccommodation(
+        @Part("access_token") access_token: RequestBody, @Part("permit") permit: RequestBody,
+        @Part("celestaid") celestaid: RequestBody, @Part("date_time") date_time: RequestBody
+    ): Call<CheckinCheckoutResponse>
+
 
     companion object Factory {
         fun create(): RetrofitApi {
