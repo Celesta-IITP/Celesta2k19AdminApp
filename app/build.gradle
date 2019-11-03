@@ -25,7 +25,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -43,5 +43,11 @@ dependencies {
     //RetrofitApi
     implementation "com.squareup.retrofit2:retrofit:2.6.1"
     implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+
+    //xzing scanner
+    implementation 'me.dm7.barcodescanner:zxing:1.9'
+
+    //dexter to handle permissions
+    implementation 'com.karumi:dexter:6.0.0'
 
 }

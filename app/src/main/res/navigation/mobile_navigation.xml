@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_login" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.celesta2k19admin.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_checkin_checkout_user"
+        android:name="com.example.celesta2k19admin.ui.CheckinCheckout.CheckinCheckoutFragment"
+        android:label="@string/menu_checkin_checkout"
+        tools:layout="@layout/fragment_checkin_checkout_user" />
 
     <fragment
         android:id="@+id/nav_tools"
@@ -40,4 +40,9 @@
         android:name="com.example.celesta2k19admin.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_scanQr"
+        android:name="com.example.celesta2k19admin.ui.ScanQrFragment"
+        android:label="ScanQr" />
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.celesta2k19admin.Utils
 
+import android.app.AlertDialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.view.View
@@ -28,4 +29,16 @@ object Utils {
                     as InputMethodManager
         inputManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager.SHOW_FORCED)
     }
+
+    fun simpleDialog(context: Context?, title: String, message: String) {
+        AlertDialog.Builder(context)
+            .setTitle(title)
+            .setMessage(message)
+            .setCancelable(true)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
 }

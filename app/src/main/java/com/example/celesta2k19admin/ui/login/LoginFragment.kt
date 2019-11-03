@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.celesta2k19admin.Constants.Constants
 import com.example.celesta2k19admin.R
 import com.example.celesta2k19admin.Utils.Utils
@@ -27,6 +28,7 @@ class LoginFragment : Fragment() {
     lateinit var progressBar: View
     lateinit var loginEmail: EditText
     lateinit var loginPassword: EditText
+    private var logoutButton: Button? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +43,16 @@ class LoginFragment : Fragment() {
         preferences = context!!.getSharedPreferences(Constants.PREF_FILENAME, 0)
         if (!preferences.getBoolean("login_status", false))
             button_login.text = "Tap to login"
-        else
-            button_login.text = "Already Logged in"
+        else {
+            //logged in
+            button_login.isEnabled = false
+            val loginRoot = rootView.findViewById<View>(R.id.login_root)
+            loginRoot.visibility = View.GONE
+            logoutButton = rootView.findViewById(R.id.logout_button)
+            logoutButton?.visibility = View.VISIBLE
+            val loggedinText = rootView.findViewById<TextView>(R.id.loggedin_text)
+            loggedinText.visibility = View.VISIBLE
+        }
         return rootView
     }
 
@@ -55,6 +65,10 @@ class LoginFragment : Fragment() {
                 Toast.makeText(context, "You are already logged in", Toast.LENGTH_SHORT).show()
             else
                 login()
+        }
+
+        logoutButton?.setOnClickListener { view ->
+            resetDatas()
         }
     }
 
@@ -98,12 +112,23 @@ class LoginFragment : Fragment() {
         })
     }
 
-    fun storeDatas(access_token: String?, permit: String?, position: String?) {
+    private fun storeDatas(access_token: String?, permit: String?, position: String?) {
         val editor = preferences.edit()
         editor.putBoolean("login_status", true)
         editor.putString("access_token", access_token)
         editor.putString("permit", permit)
         editor.putString("position", position)
         editor.apply()
+    }
+
+    private fun resetDatas() {
+        val editor = preferences.edit()
+        editor.putBoolean("login_status", false)
+        editor.putString("access_token", "")
+        editor.putString("permit", "")
+        editor.putString("position", "")
+        editor.apply()
+        Toast.makeText(context, "Successfully Logged out", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.nav_login, null)
     }
 }
