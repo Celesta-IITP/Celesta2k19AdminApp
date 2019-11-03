@@ -21,8 +21,8 @@
             android:id="@+id/nav_share"
             android:title="@string/menu_share" />
         <item
-            android:id="@+id/nav_send"
-            android:title="@string/menu_send" />
+            android:id="@+id/nav_accommodation"
+            android:title="@string/menu_accommodation" />
 
     </group>
 </menu>

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
 import com.example.celesta2k19admin.R
 import com.google.zxing.Result
 import com.karumi.dexter.Dexter
@@ -24,6 +25,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
 class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
 
     private lateinit var mScannerView: ZXingScannerView
+    private var sourceFragment: String? = null
 
 
     override fun onCreateView(
@@ -31,6 +33,9 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
         savedInstanceState: Bundle?
     ): View? {
 
+        if (arguments?.getString("fragment_source") != null) {
+            sourceFragment = arguments?.getString("fragment_source").toString()
+        }
         Dexter.withActivity(activity)
             .withPermission(Manifest.permission.CAMERA)
             .withListener(object : PermissionListener {
@@ -57,7 +62,10 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
                         "Camera Permission Denied",
                         Toast.LENGTH_LONG
                     ).show()
-                    findNavController().navigate(R.id.nav_checkin_checkout_user, null)
+                    if (sourceFragment == "accommodation")
+                        findNavController().navigate(R.id.nav_accommodation, null)
+                    else if (sourceFragment == "checkin-checkout")
+                        findNavController().navigate(R.id.nav_checkin_checkout_user, null)
                 }
             })
             .check()
@@ -82,7 +90,10 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
         val str = result!!.text.split("/")
         val bundle = bundleOf("celestaid" to str[0])
         Log.e("str: ", str[0])
-        findNavController().navigate(R.id.nav_checkin_checkout_user, bundle)
+        if (sourceFragment == "accommodation")
+            findNavController().navigate(R.id.nav_accommodation, bundle)
+        else if (sourceFragment == "checkin-checkout")
+            findNavController().navigate(R.id.nav_checkin_checkout_user, bundle)
     }
 }
 
