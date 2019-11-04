@@ -5,6 +5,7 @@ data class LoginResponse(
     private val access_token: String = "",
     private val permit: String = "",
     private val position: String = "",
+    private val email: String = "",
     private val message: List<String>
 ) {
     fun status(): Int {
@@ -21,6 +22,10 @@ data class LoginResponse(
 
     fun position(): String {
         return position
+    }
+
+    fun email(): String {
+        return email
     }
 
 }

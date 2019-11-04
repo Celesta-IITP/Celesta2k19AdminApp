@@ -14,8 +14,8 @@
             android:id="@+id/nav_checkin_checkout_user"
             android:title="@string/menu_checkin_checkout" />
         <item
-            android:id="@+id/nav_tools"
-            android:title="@string/menu_tools" />
+            android:id="@+id/nav_all_events"
+            android:title="@string/menu_all_events" />
 
         <item
             android:id="@+id/nav_share"

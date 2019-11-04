@@ -94,8 +94,10 @@ class AccommodationFragment : Fragment() {
         val datetime = df.format(Calendar.getInstance().time)
         val date_time = RequestBody.create(MediaType.parse("text/plain"), datetime)
         Log.e("TAG", "date_time: " + datetime)
+        val email =
+            RequestBody.create(MediaType.parse("text/plain"), preferences.getString("email", ""))
 
-        val call = retrofitApi.checkAccommodation(access_token, permit, celestaid, date_time)
+        val call = retrofitApi.checkAccommodation(access_token, permit, celestaid, date_time, email)
         call.enqueue(object : Callback<CheckinCheckoutResponse> {
             override fun onFailure(call: Call<CheckinCheckoutResponse>, t: Throwable) {
                 progressDialog?.dismiss()

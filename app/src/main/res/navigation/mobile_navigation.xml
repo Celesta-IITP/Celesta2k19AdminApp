@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_checkin_checkout_user" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.celesta2k19admin.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_all_events"
+        android:name="com.example.celesta2k19admin.ui.AllEvents.AllEventsFragment"
+        android:label="@string/menu_all_events"
+        tools:layout="@layout/fragment_all_events" />
 
     <fragment
         android:id="@+id/nav_share"

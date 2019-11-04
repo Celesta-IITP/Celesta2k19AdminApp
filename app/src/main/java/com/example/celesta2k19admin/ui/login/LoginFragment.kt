@@ -82,7 +82,6 @@ class LoginFragment : Fragment() {
         val email = RequestBody.create(MediaType.parse("text/plain"), emailStr)
         val password = RequestBody.create(MediaType.parse("text/plain"), passwordStr)
 
-
         val call = retofitApi.login(email, password)
         call.enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -98,7 +97,8 @@ class LoginFragment : Fragment() {
                     storeDatas(
                         response.body()?.access_token(),
                         response.body()?.permit(),
-                        response.body()?.position()
+                        response.body()?.position(),
+                        response.body()?.email()
                     )
                     findNavController().navigate(R.id.nav_login, null)
                 } else if (status == 204)
@@ -113,12 +113,18 @@ class LoginFragment : Fragment() {
         })
     }
 
-    private fun storeDatas(access_token: String?, permit: String?, position: String?) {
+    private fun storeDatas(
+        access_token: String?,
+        permit: String?,
+        position: String?,
+        email: String?
+    ) {
         val editor = preferences.edit()
         editor.putBoolean("login_status", true)
         editor.putString("access_token", access_token)
         editor.putString("permit", permit)
         editor.putString("position", position)
+        editor.putString("email", email)
         editor.apply()
     }
 
@@ -128,6 +134,7 @@ class LoginFragment : Fragment() {
         editor.putString("access_token", "")
         editor.putString("permit", "")
         editor.putString("position", "")
+        editor.putString("email", "")
         editor.apply()
         Toast.makeText(context, "Successfully Logged out", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.nav_login, null)
