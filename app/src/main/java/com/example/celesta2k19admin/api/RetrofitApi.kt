@@ -18,15 +18,24 @@ interface RetrofitApi {
     @POST("checkin_checkout.php")
     fun checkUser(
         @Part("access_token") access_token: RequestBody, @Part("permit") permit: RequestBody,
-        @Part("celestaid") celestaid: RequestBody, @Part("date_time") date_time: RequestBody
+        @Part("celestaid") celestaid: RequestBody, @Part("date_time") date_time: RequestBody,
+        @Part("email") email: RequestBody
     ): Call<CheckinCheckoutResponse>
 
     @Multipart
     @POST("hospi_checkin_checkout.php")
     fun checkAccommodation(
         @Part("access_token") access_token: RequestBody, @Part("permit") permit: RequestBody,
-        @Part("celestaid") celestaid: RequestBody, @Part("date_time") date_time: RequestBody
+        @Part("celestaid") celestaid: RequestBody, @Part("date_time") date_time: RequestBody,
+        @Part("email") email: RequestBody
     ): Call<CheckinCheckoutResponse>
+
+    @Multipart
+    @POST("eventsDetail.php")
+    fun getAllEvents(
+        @Part("access_token") access_token: RequestBody, @Part("permit") permit: RequestBody,
+        @Part("email") email: RequestBody
+    ): Call<AllEventsResponse>
 
 
     companion object Factory {

@@ -10,7 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_login">Login</string>
     <string name="menu_checkin_checkout">Checkin-Checkout</string>
-    <string name="menu_tools">Tools</string>
+    <string name="menu_all_events">All Events</string>
     <string name="menu_share">Share</string>
     <string name="menu_accommodation">Accommodation</string>
 
