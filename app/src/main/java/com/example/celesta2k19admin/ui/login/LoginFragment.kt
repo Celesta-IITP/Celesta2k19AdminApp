@@ -52,6 +52,8 @@ class LoginFragment : Fragment() {
             logoutButton?.visibility = View.VISIBLE
             val loggedinText = rootView.findViewById<TextView>(R.id.loggedin_text)
             loggedinText.visibility = View.VISIBLE
+            val logintext = "Position: ${preferences.getString("position","")}\nPermit: ${preferences.getString("permit","")}"
+            loggedinText.text=logintext
         }
         return rootView
     }

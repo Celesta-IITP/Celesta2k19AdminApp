@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_login, R.id.nav_checkin_checkout_user,
-                R.id.nav_all_events, R.id.nav_share, R.id.nav_accommodation
+                R.id.nav_all_events, R.id.nav_event_users, R.id.nav_accommodation
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu; this adds userList to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }

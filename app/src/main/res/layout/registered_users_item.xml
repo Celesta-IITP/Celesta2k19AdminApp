@@ -9,43 +9,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:padding="8dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <TextView
-                android:id="@+id/all_events_name"
+                android:id="@+id/registered_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black" />
+                android:gravity="center_horizontal" />
 
             <TextView
-                android:id="@+id/all_events_id"
+                android:id="@+id/registered_user_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black" />
+                android:gravity="center_horizontal" />
 
             <TextView
-                android:id="@+id/all_events_team_check"
+                android:id="@+id/registered_user_celestaid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:padding="2dp"/>
+                android:gravity="center_horizontal" />
 
-            <Button
-                android:id="@+id/button_registered_users_teams"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/registered_user_amount"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="View Registered Users OR Teams" />
+                android:gravity="center_horizontal" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

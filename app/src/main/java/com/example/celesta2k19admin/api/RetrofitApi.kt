@@ -31,6 +31,13 @@ interface RetrofitApi {
     ): Call<CheckinCheckoutResponse>
 
     @Multipart
+    @POST("eventUsers.php")
+    fun getEventRegisteredUsers(
+        @Part("access_token") access_token: RequestBody, @Part("permit") permit: RequestBody,
+        @Part("email") email: RequestBody, @Part("ev_id") ev_id: RequestBody
+    ): Call<EventUsersResponse>
+
+    @Multipart
     @POST("eventsDetail.php")
     fun getAllEvents(
         @Part("access_token") access_token: RequestBody, @Part("permit") permit: RequestBody,
