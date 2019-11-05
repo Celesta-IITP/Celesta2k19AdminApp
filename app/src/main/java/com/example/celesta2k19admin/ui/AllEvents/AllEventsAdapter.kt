@@ -4,7 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.celesta2k19admin.R
 import com.example.celesta2k19admin.api.AllEvents
@@ -32,6 +36,13 @@ class AllEventsAdapter(val context: Context?) :
             holder.team_check.text = "Team Event"
         else
             holder.team_check.text = allEvents.get(position).is_team_event.toString()
+        holder.buttonViewAllUsers.setOnClickListener { v ->
+            val bundle = bundleOf(
+                "ev_id" to allEvents.get(position).ev_id,
+                "is_team_event" to allEvents.get(position).is_team_event.toString()
+            )
+            holder.itemView.findNavController().navigate(R.id.nav_event_users, bundle)
+        }
     }
 
     fun setAllEventsList(allEvents: List<AllEvents>) {
@@ -43,5 +54,6 @@ class AllEventsAdapter(val context: Context?) :
         val name: TextView = itemView.findViewById(R.id.all_events_name)
         val id: TextView = itemView.findViewById(R.id.all_events_id)
         val team_check: TextView = itemView.findViewById(R.id.all_events_team_check)
+        val buttonViewAllUsers: Button = itemView.findViewById(R.id.button_registered_users_teams)
     }
 }
