@@ -45,4 +45,9 @@
         android:id="@+id/nav_scanQr"
         android:name="com.example.celesta2k19admin.ui.ScanQrFragment"
         android:label="ScanQr" />
+
+    <fragment
+        android:id="@+id/nav_user_details"
+        android:name="com.example.celesta2k19admin.ui.UserDetails.UserDetailsFragment"
+        android:label="User Details" />
 </navigation>

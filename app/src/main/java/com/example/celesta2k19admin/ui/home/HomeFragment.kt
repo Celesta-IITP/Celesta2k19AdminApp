@@ -16,6 +16,10 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var homeLoginButton: Button
+    private lateinit var homeCheckinCheckoutButton: Button
+    private lateinit var homeAllEventsButton: Button
+    private lateinit var homeUserDetailsButton: Button
+    private lateinit var homeAccommodationButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +31,10 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         homeLoginButton = root.findViewById(R.id.home_login_button)
+        homeCheckinCheckoutButton = root.findViewById(R.id.home_checkin_checkout_button)
+        homeAllEventsButton = root.findViewById(R.id.home_all_events_button)
+        homeUserDetailsButton = root.findViewById(R.id.home_user_details_button)
+        homeAccommodationButton = root.findViewById(R.id.home_accommodation_button)
         homeViewModel.text.observe(this, Observer {
             textView.text = it
         })
@@ -37,6 +45,18 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         homeLoginButton.setOnClickListener { view ->
             findNavController().navigate(R.id.nav_login, null)
+        }
+        homeCheckinCheckoutButton.setOnClickListener { view ->
+            findNavController().navigate(R.id.nav_checkin_checkout_user, null)
+        }
+        homeAllEventsButton.setOnClickListener { view ->
+            findNavController().navigate(R.id.nav_all_events, null)
+        }
+        homeUserDetailsButton.setOnClickListener { view ->
+            findNavController().navigate(R.id.nav_user_details, null)
+        }
+        homeAccommodationButton.setOnClickListener { view ->
+            findNavController().navigate(R.id.nav_accommodation, null)
         }
     }
 }
