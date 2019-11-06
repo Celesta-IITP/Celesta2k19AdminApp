@@ -53,6 +53,7 @@ class AllEventsFragment : Fragment() {
         allEventsRecyclerView = root.findViewById(R.id.all_events_recycler_view) as RecyclerView
         allEventsAdapter = AllEventsAdapter(context)
         allEventsRecyclerView.layoutManager = LinearLayoutManager(context)
+        allEventsRecyclerView.recycledViewPool.setMaxRecycledViews(0, 0)
         allEventsRecyclerView.adapter = allEventsAdapter
 
         allEventsViewModel.text.observe(this, Observer {
@@ -87,7 +88,7 @@ class AllEventsFragment : Fragment() {
         call.enqueue(object : Callback<AllEventsResponse> {
             override fun onFailure(call: Call<AllEventsResponse>, t: Throwable) {
                 progressDialog?.dismiss()
-                Toast.makeText(context, "Something wa=ent wrong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
                 Log.e("Error:", t.localizedMessage)
             }
 
@@ -99,7 +100,7 @@ class AllEventsFragment : Fragment() {
                 val status = response.body()?.getStatus()
                 if (status == 401) {
                     val message = response.body()?.getMessage()
-                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                    Utils.simpleDialog(context, "Error", message.toString())
                 } else if (status == 200) {
                     val events = response.body()?.getEvents()
                     if (events != null)

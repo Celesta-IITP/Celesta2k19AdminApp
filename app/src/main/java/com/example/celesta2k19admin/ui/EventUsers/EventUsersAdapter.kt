@@ -1,5 +1,6 @@
 package com.example.celesta2k19admin.ui.EventUsers
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,8 @@ class EventUsersAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var viewHolder: RecyclerView.ViewHolder
 
-        if (is_team_event == 0) {
+        Log.e("Viewtype:", viewType.toString())
+        if (viewType == 0) {
             //registered users
             val view =
                 LayoutInflater.from(parent.context)
@@ -47,6 +49,12 @@ class EventUsersAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setIsTeamEvent(value: Int) {
         is_team_event = value
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (is_team_event == 0) return 0
+        else if (is_team_event == 1) return 1
+        return -1
     }
 
     override fun getItemCount(): Int {
