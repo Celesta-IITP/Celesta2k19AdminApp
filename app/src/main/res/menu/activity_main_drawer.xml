@@ -18,8 +18,8 @@
             android:title="@string/menu_all_events" />
 
         <item
-            android:id="@+id/nav_event_users"
-            android:title="Event Users" />
+            android:id="@+id/nav_user_details"
+            android:title="User Details" />
         <item
             android:id="@+id/nav_accommodation"
             android:title="@string/menu_accommodation" />

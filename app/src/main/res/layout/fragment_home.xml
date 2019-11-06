@@ -19,8 +19,51 @@
         android:id="@+id/home_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
         android:background="@color/colorPrimary"
-        android:text="Login"
+        android:text="Login/Logout"
         android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/home_checkin_checkout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Checkin/Checkout"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/home_all_events_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/colorPrimary"
+        android:text="All Events"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/home_user_details_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/colorPrimary"
+        android:text="User Details"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/home_accommodation_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Accommodation"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"/>
+
+
 </LinearLayout>

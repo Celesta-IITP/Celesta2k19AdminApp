@@ -66,6 +66,8 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
                         findNavController().navigate(R.id.nav_accommodation, null)
                     else if (sourceFragment == "checkin-checkout")
                         findNavController().navigate(R.id.nav_checkin_checkout_user, null)
+                    else if (sourceFragment == "user_details")
+                        findNavController().navigate(R.id.nav_user_details, null)
                 }
             })
             .check()
@@ -94,6 +96,8 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
             findNavController().navigate(R.id.nav_accommodation, bundle)
         else if (sourceFragment == "checkin-checkout")
             findNavController().navigate(R.id.nav_checkin_checkout_user, bundle)
+        else if (sourceFragment == "user_details")
+            findNavController().navigate(R.id.nav_user_details, bundle)
     }
 }
 
