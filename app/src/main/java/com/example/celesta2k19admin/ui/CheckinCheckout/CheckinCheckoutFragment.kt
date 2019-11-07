@@ -121,11 +121,15 @@ class CheckinCheckoutFragment : Fragment() {
                         "Celesta Id: $celestaId\nStatus: ${response.body()?.action()}"
                     )
                 } else if (status == "203") {
-                    Utils.simpleDialog(context,"Error","Account not verified at desk")
+                    Utils.simpleDialog(context, "Error", "Account not verified at desk")
                 } else if (status == "401") {
-                    Utils.simpleDialog(context,"Error","Admin Unauthorized to perform this action")
+                    Utils.simpleDialog(
+                        context,
+                        "Error",
+                        "Admin Unauthorized to perform this action"
+                    )
                 } else if (status == "404") {
-                    Utils.simpleDialog(context,"Error","Celesta ID not found")
+                    Utils.simpleDialog(context, "Error", "Celesta ID not found")
                 } else
                     Toast.makeText(context, "Invalid status", Toast.LENGTH_SHORT).show()
             }

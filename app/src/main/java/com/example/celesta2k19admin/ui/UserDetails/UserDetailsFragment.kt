@@ -1,32 +1,19 @@
 package com.example.celesta2k19admin.ui.UserDetails
 
 
-import android.app.ProgressDialog
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.celesta2k19admin.Constants.Constants
-
 import com.example.celesta2k19admin.R
 import com.example.celesta2k19admin.Utils.Utils
-import com.example.celesta2k19admin.api.RetrofitApi
-import com.example.celesta2k19admin.api.UserDetailsResponse
-import kotlinx.android.synthetic.main.fragment_login.*
-import okhttp3.MediaType
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class UserDetailsFragment : Fragment() {
     private lateinit var UserDetailButton: Button

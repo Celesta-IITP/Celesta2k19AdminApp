@@ -5,17 +5,16 @@ import android.app.ProgressDialog
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.celesta2k19admin.Constants.Constants
-
 import com.example.celesta2k19admin.R
 import com.example.celesta2k19admin.Utils.Utils
 import com.example.celesta2k19admin.api.RetrofitApi
@@ -103,11 +102,10 @@ class UserDetailsOutputFragment : Fragment() {
             ) {
                 progressDialog?.dismiss()
                 val status = response.body()?.status
-                if (status != 200){
+                if (status != 200) {
                     Utils.simpleDialog(context, "Error", response.body()?.message.toString())
-                    findNavController().navigate(R.id.nav_user_details,null)
-                }
-                else {
+                    findNavController().navigate(R.id.nav_user_details, null)
+                } else {
                     val list = response.body()?.events_registered
                     if (list != null)
                         userRegisteredEventsAdapter.setRegisteredEventsList(list)

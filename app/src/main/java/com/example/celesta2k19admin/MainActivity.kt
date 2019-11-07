@@ -2,22 +2,18 @@ package com.example.celesta2k19admin
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.Preference
-import android.preference.PreferenceManager
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import android.view.MenuItem
-import androidx.navigation.fragment.findNavController
-
 import com.example.celesta2k19admin.Constants.Constants
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -91,10 +87,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val login_status = preferences.getBoolean("login_status",false)
-        if(login_status==false){
+        val login_status = preferences.getBoolean("login_status", false)
+        if (login_status == false) {
             findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home, null)
-        }else{
+        } else {
             super.onBackPressed()
         }
     }

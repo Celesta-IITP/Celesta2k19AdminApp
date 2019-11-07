@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.celesta2k19admin.Constants.Constants
 import com.example.celesta2k19admin.R
-import com.example.celesta2k19admin.api.AllEvents
 
 class HomeFragment : Fragment() {
 
