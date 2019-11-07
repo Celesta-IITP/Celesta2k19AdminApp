@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img1"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/login_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
         <ImageView
@@ -36,65 +36,60 @@
             android:layout_below="@id/portal"
             android:layout_marginLeft="34dp"
             android:layout_marginRight="34dp"
+            android:layout_marginBottom="24dp"
             android:background="#D7BDE2" />
 
-        <TextView
-            android:id="@+id/text_home"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_email_text_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/view"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="66dp"
-            android:text="E-mail ID"
-            android:textColor="#FFFFFF"
-            android:textSize="23sp"
-            android:textStyle="bold" />
+            android:layout_below="@+id/view"
+            android:layout_margin="16dp"
+            android:hint="Email ID"
+            android:textColorHint="@color/white">
 
-        <EditText
-            android:id="@+id/editext_login_email"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editext_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:theme="@style/AppTheme.Edittext" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_password_text_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_home"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="8dp"
-            android:hint="Enter your E-mail ID here"
-            android:inputType="text"
-            android:textColor="#FFFFFF"
+            android:layout_below="@+id/login_email_text_layout"
+            android:layout_margin="16dp"
+            android:hint="Password"
             android:textColorHint="@color/white"
-            android:textSize="18sp" />
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white">
 
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editext_login_email"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="58dp"
-            android:text="Password"
-            android:textColor="#FFFFFF"
-            android:textSize="23sp"
-            android:textStyle="bold" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editext_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:theme="@style/AppTheme.Edittext" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editext_login_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/password"
-            android:layout_marginLeft="18dp"
-            android:hint="Enter your password here"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
-            android:textSize="18sp"
-            android:textStyle="normal" />
 
         <Button
             android:id="@+id/button_login"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/editext_login_password"
+            android:layout_below="@id/login_password_text_layout"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="55dp"
-            android:text="LOG-IN"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_button"
+            android:text="login"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <include
@@ -110,6 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="You are already logged in"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone" />
 
@@ -118,7 +114,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:background="@drawable/rounded_button"
         android:text="Logout"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:visibility="gone" />
 

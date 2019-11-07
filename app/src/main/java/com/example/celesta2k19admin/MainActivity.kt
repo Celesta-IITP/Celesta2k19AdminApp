@@ -1,5 +1,6 @@
 package com.example.celesta2k19admin
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,10 +12,17 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.MenuItem
+import com.example.celesta2k19admin.Constants.Constants
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navView: NavigationView
+    private lateinit var preferences: SharedPreferences
+    private lateinit var navCheckinCheckout: MenuItem
+    private lateinit var navAllEvents: MenuItem
+    private lateinit var navAccommodation: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +31,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+        navView = findViewById(R.id.nav_view)
+        val menu: Menu = navView.menu
+        navAccommodation = menu.findItem(R.id.nav_accommodation)
+        navAllEvents = menu.findItem(R.id.nav_all_events)
+        navCheckinCheckout = menu.findItem(R.id.nav_checkin_checkout_user)
+
+        preferences = applicationContext.getSharedPreferences(Constants.PREF_FILENAME, 0)
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -35,6 +49,28 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (preferences.getString("permit", "") == "2") {
+            navAllEvents.setVisible(false)
+            navCheckinCheckout.setVisible(true)
+            navAccommodation.setVisible(true)
+        } else if (preferences.getString("permit", "") == "3") {
+            navAllEvents.setVisible(false)
+            navCheckinCheckout.setVisible(false)
+            navAccommodation.setVisible(false)
+        } else if (preferences.getString("permit", "") == "4") {
+            navAccommodation.setVisible(false)
+            navCheckinCheckout.setVisible(false)
+            navAllEvents.setVisible(true)
+        } else if (preferences.getString("permit", "") == "5") {
+            navAllEvents.setVisible(false)
+            navCheckinCheckout.setVisible(false)
+            navAccommodation.setVisible(true)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

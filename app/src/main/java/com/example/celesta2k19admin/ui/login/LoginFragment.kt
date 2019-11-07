@@ -1,5 +1,6 @@
 package com.example.celesta2k19admin.ui.login
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.celesta2k19admin.Constants.Constants
+import com.example.celesta2k19admin.MainActivity
 import com.example.celesta2k19admin.R
 import com.example.celesta2k19admin.Utils.Utils
 import com.example.celesta2k19admin.api.LoginResponse
@@ -52,8 +54,11 @@ class LoginFragment : Fragment() {
             logoutButton?.visibility = View.VISIBLE
             val loggedinText = rootView.findViewById<TextView>(R.id.loggedin_text)
             loggedinText.visibility = View.VISIBLE
-            val logintext = "Position: ${preferences.getString("position","")}\nPermit: ${preferences.getString("permit","")}"
-            loggedinText.text=logintext
+            val logintext = "Position: ${preferences.getString(
+                "position",
+                ""
+            )}\nPermit: ${preferences.getString("permit", "")}"
+            loggedinText.text = logintext
         }
         return rootView
     }
@@ -102,7 +107,7 @@ class LoginFragment : Fragment() {
                         response.body()?.position(),
                         response.body()?.email()
                     )
-                    findNavController().navigate(R.id.nav_login, null)
+//                    findNavController().navigate(R.id.nav_login, null)
                 } else if (status == 204)
                     Toast.makeText(context, "User not found", Toast.LENGTH_SHORT).show()
                 else if (status == 405)
@@ -128,6 +133,8 @@ class LoginFragment : Fragment() {
         editor.putString("position", position)
         editor.putString("email", email)
         editor.apply()
+        requireActivity().finish()
+        requireActivity().startActivity(Intent(context, MainActivity::class.java))
     }
 
     private fun resetDatas() {
@@ -139,7 +146,9 @@ class LoginFragment : Fragment() {
         editor.putString("email", "")
         editor.apply()
         Toast.makeText(context, "Successfully Logged out", Toast.LENGTH_SHORT).show()
-        findNavController().navigate(R.id.nav_login, null)
+//        findNavController().navigate(R.id.nav_login, null)
+        requireActivity().finish()
+        requireActivity().startActivity(Intent(context, MainActivity::class.java))
     }
 
 
