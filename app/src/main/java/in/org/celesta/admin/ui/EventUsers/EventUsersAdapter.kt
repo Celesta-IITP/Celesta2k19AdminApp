@@ -1,14 +1,14 @@
 package `in`.org.celesta.admin.ui.EventUsers
 
 import `in`.org.celesta.admin.R
+import `in`.org.celesta.admin.api.RegisteredUsers
+import `in`.org.celesta.admin.api.TeamDetails
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import `in`.org.celesta.admin.api.RegisteredUsers
-import `in`.org.celesta.admin.api.TeamDetails
 
 class EventUsersAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -112,187 +112,185 @@ class EventUsersAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun configureTeamDetailsViewHolder(vh2: TeamDetailsViewHolder, position: Int) {
         val teamDetails: TeamDetails = teamUserList.get(position)
-        if (teamDetails != null) {
-            if (teamDetails.team_name != null) {
-                Log.d("KHANKI", teamDetails.team_name)
-            }
-            // Correct
-            if (teamDetails.team_name.isNotBlank() && teamDetails.team_name != null) {
-                vh2.teamName.visibility = View.VISIBLE
-                vh2.teamName.text = "Team Name: ${teamDetails.team_name}"
-            } else {
-                vh2.teamName.visibility = View.GONE
-            }
-            // Correct
-            if (teamDetails.amount.toString().isNotBlank() && teamDetails.amount != null) {
-                vh2.amount.visibility = View.VISIBLE
-                vh2.amount.text =
-                    "Amount: ${teamDetails.amount.toString()}"
-            } else {
-                vh2.amount.visibility = View.GONE
-            }
+        if (teamDetails.team_name != null) {
+            Log.d("KHANKI", teamDetails.team_name)
+        }
+        // Correct
+        if (teamDetails.team_name != null && teamDetails.team_name.isNotBlank()) {
+            vh2.teamName.visibility = View.VISIBLE
+            vh2.teamName.text = "Team Name: ${teamDetails.team_name}"
+        } else {
+            vh2.teamName.visibility = View.GONE
+        }
+        // Correct
+        if (teamDetails.amount != null && teamDetails.amount.toString().isNotBlank()) {
+            vh2.amount.visibility = View.VISIBLE
+            vh2.amount.text =
+                "Amount: ${teamDetails.amount.toString()}"
+        } else {
+            vh2.amount.visibility = View.GONE
+        }
 
-            // Correct
-            if (teamDetails.cap_name != "" && teamDetails.cap_name != null) {
-                vh2.capName.visibility = View.VISIBLE
-                vh2.capName.text =
-                    "Captain Name: ${teamDetails.cap_name}"
-            } else {
-                vh2.capName.visibility = View.GONE
-            }
+        // Correct
+        if (teamDetails.cap_name != null && teamDetails.cap_name != "") {
+            vh2.capName.visibility = View.VISIBLE
+            vh2.capName.text =
+                "Captain Name: ${teamDetails.cap_name}"
+        } else {
+            vh2.capName.visibility = View.GONE
+        }
 
-            if (teamDetails.cap_celestaid != "" && teamDetails.cap_celestaid != null) {
-                vh2.capCelestaId.visibility = View.VISIBLE
-                vh2.capCelestaId.text =
-                    "Captain Celesta ID: ${teamDetails.cap_celestaid}"
-            } else {
-                vh2.capCelestaId.visibility = View.GONE
-            }
+        if (teamDetails.cap_celestaid != null && teamDetails.cap_celestaid != "") {
+            vh2.capCelestaId.visibility = View.VISIBLE
+            vh2.capCelestaId.text =
+                "Captain Celesta ID: ${teamDetails.cap_celestaid}"
+        } else {
+            vh2.capCelestaId.visibility = View.GONE
+        }
 
-            // Correct
-            if (teamDetails.cap_phone != "" && teamDetails.cap_phone != null) {
-                vh2.capPhone.visibility = View.VISIBLE
-                vh2.capPhone.text =
-                    "Captain Phone: ${teamDetails.cap_phone}"
-            } else {
-                vh2.capPhone.visibility = View.GONE
-            }
+        // Correct
+        if (teamDetails.cap_phone != null && teamDetails.cap_phone != "") {
+            vh2.capPhone.visibility = View.VISIBLE
+            vh2.capPhone.text =
+                "Captain Phone: ${teamDetails.cap_phone}"
+        } else {
+            vh2.capPhone.visibility = View.GONE
+        }
 
-            if (teamDetails.cap_email != "" && teamDetails.cap_email != null) {
-                vh2.capEmail.visibility = View.VISIBLE
-                vh2.capEmail.text =
-                    "Captain Email: ${teamDetails.cap_email}"
-            } else {
-                vh2.capEmail.visibility = View.GONE
-            }
+        if (teamDetails.cap_email != null && teamDetails.cap_email != "") {
+            vh2.capEmail.visibility = View.VISIBLE
+            vh2.capEmail.text =
+                "Captain Email: ${teamDetails.cap_email}"
+        } else {
+            vh2.capEmail.visibility = View.GONE
+        }
 
-            if (teamDetails.mem1_name != "" && teamDetails.mem1_name != null) {
-                vh2.mem1Name.visibility = View.VISIBLE
-                vh2.mem1Name.text =
-                    "Member 2 name: " + teamDetails.mem1_name
-            } else {
-                vh2.mem1Name.visibility = View.GONE
-            }
+        if (teamDetails.mem1_name != null && teamDetails.mem1_name != "") {
+            vh2.mem1Name.visibility = View.VISIBLE
+            vh2.mem1Name.text =
+                "Member 2 name: " + teamDetails.mem1_name
+        } else {
+            vh2.mem1Name.visibility = View.GONE
+        }
 
-            if (teamDetails.mem1_celestaid != "" && teamDetails.mem1_celestaid != null) {
-                vh2.mem1CelestaId.visibility = View.VISIBLE
-                vh2.mem1CelestaId.text =
-                    "Member 2 Celesta ID: " + teamDetails.mem1_celestaid
-            } else {
-                vh2.mem1CelestaId.visibility = View.GONE
-            }
+        if (teamDetails.mem1_celestaid != "" && teamDetails.mem1_celestaid != null) {
+            vh2.mem1CelestaId.visibility = View.VISIBLE
+            vh2.mem1CelestaId.text =
+                "Member 2 Celesta ID: " + teamDetails.mem1_celestaid
+        } else {
+            vh2.mem1CelestaId.visibility = View.GONE
+        }
 
-            if (teamDetails.mem1_phone != "" && teamDetails.mem1_phone != null) {
-                vh2.mem1Phone.visibility = View.VISIBLE
-                vh2.mem1Phone.text =
-                    "Member 2 Phone: " + teamDetails.mem1_phone
-            } else {
-                vh2.mem1Phone.visibility = View.GONE
-            }
+        if (teamDetails.mem1_phone != "" && teamDetails.mem1_phone != null) {
+            vh2.mem1Phone.visibility = View.VISIBLE
+            vh2.mem1Phone.text =
+                "Member 2 Phone: " + teamDetails.mem1_phone
+        } else {
+            vh2.mem1Phone.visibility = View.GONE
+        }
 
-            if (teamDetails.mem1_email != "" && teamDetails.mem1_email != null) {
-                vh2.mem1Email.visibility = View.VISIBLE
-                vh2.mem1Email.text =
-                    "Member 2 Email: " + teamDetails.mem1_email
-            } else {
-                vh2.mem1Email.visibility = View.GONE
-            }
+        if (teamDetails.mem1_email != "" && teamDetails.mem1_email != null) {
+            vh2.mem1Email.visibility = View.VISIBLE
+            vh2.mem1Email.text =
+                "Member 2 Email: " + teamDetails.mem1_email
+        } else {
+            vh2.mem1Email.visibility = View.GONE
+        }
 
-            if (teamDetails.mem2_name != "" && teamDetails.mem2_name != null) {
-                vh2.mem2Name.visibility = View.VISIBLE
-                vh2.mem2Name.text =
-                    "Member 3 name: " + teamDetails.mem2_name
-            } else {
-                vh2.mem2Name.visibility = View.GONE
-            }
+        if (teamDetails.mem2_name != "" && teamDetails.mem2_name != null) {
+            vh2.mem2Name.visibility = View.VISIBLE
+            vh2.mem2Name.text =
+                "Member 3 name: " + teamDetails.mem2_name
+        } else {
+            vh2.mem2Name.visibility = View.GONE
+        }
 
-            if (teamDetails.mem2_celestaid != "" && teamDetails.mem2_celestaid != null) {
-                vh2.mem2CelestaId.visibility = View.VISIBLE
-                vh2.mem2CelestaId.text =
-                    "Member 3 Celesta ID: " + teamDetails.mem2_celestaid
-            } else {
-                vh2.mem2CelestaId.visibility = View.GONE
-            }
+        if (teamDetails.mem2_celestaid != "" && teamDetails.mem2_celestaid != null) {
+            vh2.mem2CelestaId.visibility = View.VISIBLE
+            vh2.mem2CelestaId.text =
+                "Member 3 Celesta ID: " + teamDetails.mem2_celestaid
+        } else {
+            vh2.mem2CelestaId.visibility = View.GONE
+        }
 
-            if (teamDetails.mem2_phone != "" && teamDetails.mem2_phone != null) {
-                vh2.mem2Phone.visibility = View.VISIBLE
-                vh2.mem2Phone.text =
-                    "Member 3 Phone: " + teamDetails.mem2_phone
-            } else {
-                vh2.mem2Phone.visibility = View.GONE
-            }
+        if (teamDetails.mem2_phone != "" && teamDetails.mem2_phone != null) {
+            vh2.mem2Phone.visibility = View.VISIBLE
+            vh2.mem2Phone.text =
+                "Member 3 Phone: " + teamDetails.mem2_phone
+        } else {
+            vh2.mem2Phone.visibility = View.GONE
+        }
 
-            if (teamDetails.mem2_email != "" && teamDetails.mem2_email != null) {
-                vh2.mem2Email.visibility = View.VISIBLE
-                vh2.mem2Email.text =
-                    "Member 3 Email: " + teamDetails.mem2_email
-            } else {
-                vh2.mem2Email.visibility = View.GONE
-            }
+        if (teamDetails.mem2_email != "" && teamDetails.mem2_email != null) {
+            vh2.mem2Email.visibility = View.VISIBLE
+            vh2.mem2Email.text =
+                "Member 3 Email: " + teamDetails.mem2_email
+        } else {
+            vh2.mem2Email.visibility = View.GONE
+        }
 
-            if (teamDetails.mem3_name != "" && teamDetails.mem3_name != null) {
-                vh2.mem3Name.visibility = View.VISIBLE
-                vh2.mem3Name.text =
-                    "Member 4 name: " + teamDetails.mem3_name
-            } else {
-                vh2.mem3Name.visibility = View.GONE
-            }
+        if (teamDetails.mem3_name != "" && teamDetails.mem3_name != null) {
+            vh2.mem3Name.visibility = View.VISIBLE
+            vh2.mem3Name.text =
+                "Member 4 name: " + teamDetails.mem3_name
+        } else {
+            vh2.mem3Name.visibility = View.GONE
+        }
 
-            if (teamDetails.mem3_celestaid != "" && teamDetails.mem3_celestaid != null) {
-                vh2.mem3CelestaId.visibility = View.VISIBLE
-                vh2.mem3CelestaId.text =
-                    "Member 4 Celesta ID: " + teamDetails.mem3_celestaid
-            } else {
-                vh2.mem3CelestaId.visibility = View.GONE
-            }
+        if (teamDetails.mem3_celestaid != "" && teamDetails.mem3_celestaid != null) {
+            vh2.mem3CelestaId.visibility = View.VISIBLE
+            vh2.mem3CelestaId.text =
+                "Member 4 Celesta ID: " + teamDetails.mem3_celestaid
+        } else {
+            vh2.mem3CelestaId.visibility = View.GONE
+        }
 
-            if (teamDetails.mem3_phone != "" && teamDetails.mem3_phone != null) {
-                vh2.mem3Phone.visibility = View.VISIBLE
-                vh2.mem3Phone.text =
-                    "Member 4 Phone: " + teamDetails.mem3_phone
-            } else {
-                vh2.mem3Phone.visibility = View.GONE
-            }
+        if (teamDetails.mem3_phone != "" && teamDetails.mem3_phone != null) {
+            vh2.mem3Phone.visibility = View.VISIBLE
+            vh2.mem3Phone.text =
+                "Member 4 Phone: " + teamDetails.mem3_phone
+        } else {
+            vh2.mem3Phone.visibility = View.GONE
+        }
 
-            if (teamDetails.mem3_email != "" && teamDetails.mem3_email != null) {
-                vh2.mem3Email.visibility = View.VISIBLE
-                vh2.mem3Email.text =
-                    "Member 4 Email: " + teamDetails.mem3_email
-            } else {
-                vh2.mem3Email.visibility = View.GONE
-            }
+        if (teamDetails.mem3_email != "" && teamDetails.mem3_email != null) {
+            vh2.mem3Email.visibility = View.VISIBLE
+            vh2.mem3Email.text =
+                "Member 4 Email: " + teamDetails.mem3_email
+        } else {
+            vh2.mem3Email.visibility = View.GONE
+        }
 
-            if (teamDetails.mem4_name != "" && teamDetails.mem4_name != null) {
-                vh2.mem4Name.visibility = View.VISIBLE
-                vh2.mem4Name.text =
-                    "Member 5 name: " + teamDetails.mem4_name
-            } else {
-                vh2.mem4Name.visibility = View.GONE
-            }
+        if (teamDetails.mem4_name != "" && teamDetails.mem4_name != null) {
+            vh2.mem4Name.visibility = View.VISIBLE
+            vh2.mem4Name.text =
+                "Member 5 name: " + teamDetails.mem4_name
+        } else {
+            vh2.mem4Name.visibility = View.GONE
+        }
 
-            if (teamDetails.mem4_celestaid != "" && teamDetails.mem4_celestaid != null) {
-                vh2.mem4CelestaId.visibility = View.VISIBLE
-                vh2.mem4CelestaId.text =
-                    "Member 5 Celesta ID: " + teamDetails.mem4_celestaid
-            } else {
-                vh2.mem4CelestaId.visibility = View.GONE
-            }
+        if (teamDetails.mem4_celestaid != "" && teamDetails.mem4_celestaid != null) {
+            vh2.mem4CelestaId.visibility = View.VISIBLE
+            vh2.mem4CelestaId.text =
+                "Member 5 Celesta ID: " + teamDetails.mem4_celestaid
+        } else {
+            vh2.mem4CelestaId.visibility = View.GONE
+        }
 
-            if (teamDetails.mem4_phone != "" && teamDetails.mem4_phone != null) {
-                vh2.mem4Phone.visibility = View.VISIBLE
-                vh2.mem4Phone.text =
-                    "Member 5 Phone: " + teamDetails.mem4_phone
-            } else {
-                vh2.mem4Phone.visibility = View.GONE
-            }
+        if (teamDetails.mem4_phone != "" && teamDetails.mem4_phone != null) {
+            vh2.mem4Phone.visibility = View.VISIBLE
+            vh2.mem4Phone.text =
+                "Member 5 Phone: " + teamDetails.mem4_phone
+        } else {
+            vh2.mem4Phone.visibility = View.GONE
+        }
 
-            if (teamDetails.mem4_email != "" && teamDetails.mem4_email != null) {
-                vh2.mem4Email.visibility = View.VISIBLE
-                vh2.mem4Email.text =
-                    "Member 5 Email: " + teamDetails.mem4_email
-            } else {
-                vh2.mem4Email.visibility = View.GONE
-            }
+        if (teamDetails.mem4_email != "" && teamDetails.mem4_email != null) {
+            vh2.mem4Email.visibility = View.VISIBLE
+            vh2.mem4Email.text =
+                "Member 5 Email: " + teamDetails.mem4_email
+        } else {
+            vh2.mem4Email.visibility = View.GONE
         }
     }
 

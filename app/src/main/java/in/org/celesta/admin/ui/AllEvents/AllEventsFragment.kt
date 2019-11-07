@@ -1,5 +1,10 @@
 package `in`.org.celesta.admin.ui.AllEvents
 
+import `in`.org.celesta.admin.Constants.Constants
+import `in`.org.celesta.admin.R
+import `in`.org.celesta.admin.Utils.Utils
+import `in`.org.celesta.admin.api.AllEventsResponse
+import `in`.org.celesta.admin.api.RetrofitApi
 import android.app.ProgressDialog
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -15,11 +20,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import `in`.org.celesta.admin.Constants.Constants
-import `in`.org.celesta.admin.R
-import `in`.org.celesta.admin.Utils.Utils
-import `in`.org.celesta.admin.api.AllEventsResponse
-import `in`.org.celesta.admin.api.RetrofitApi
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -33,6 +33,7 @@ class AllEventsFragment : Fragment() {
     private lateinit var allEventsRecyclerView: RecyclerView
     private var progressDialog: ProgressDialog? = null
     lateinit var preferences: SharedPreferences
+    private var dataLoaded = false;
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,10 +60,16 @@ class AllEventsFragment : Fragment() {
         allEventsViewModel.text.observe(this, Observer {
             textView.text = it
         })
+
+        allEventsViewModel.getEventData().observe(this, Observer {
+            allEventsAdapter.setAllEventsList(it)
+        })
+
         if (!Utils.isNetworkConnected(context))
             Toast.makeText(context, "Check your internet connection", Toast.LENGTH_SHORT).show()
         else if (preferences.getBoolean("login_status", false))
-            loadAllEvents()
+            if (!dataLoaded)
+                loadAllEvents()
         return root
     }
 
@@ -103,8 +110,10 @@ class AllEventsFragment : Fragment() {
                     Utils.simpleDialog(context, "Error", message.toString())
                 } else if (status == 200) {
                     val events = response.body()?.getEvents()
-                    if (events != null)
-                        allEventsAdapter.setAllEventsList(events)
+                    if (events != null) {
+                        dataLoaded = true
+                        allEventsViewModel.setEventData(events)
+                    }
                 } else
                     Toast.makeText(context, "Invalid status code", Toast.LENGTH_SHORT).show()
             }
