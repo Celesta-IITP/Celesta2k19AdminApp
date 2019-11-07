@@ -46,7 +46,7 @@ class UserDetailsOutputFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_user_details_output, container, false)
-        preferences = context!!.getSharedPreferences(Constants.PREF_FILENAME, 0)
+        preferences = requireContext().getSharedPreferences(Constants.PREF_FILENAME, 0)
 
         name = rootView.findViewById(R.id.user_details_name)
         emailTextView = rootView.findViewById(R.id.user_details_email)

@@ -42,7 +42,7 @@ class CheckinCheckoutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        preferences = context!!.getSharedPreferences(Constants.PREF_FILENAME, 0)
+        preferences = requireContext().getSharedPreferences(Constants.PREF_FILENAME, 0)
         if (!preferences.getBoolean("login_status", false)) {
             Toast.makeText(context, "You need to login first", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.nav_login, null)
@@ -121,19 +121,11 @@ class CheckinCheckoutFragment : Fragment() {
                         "Celesta Id: $celestaId\nStatus: ${response.body()?.action()}"
                     )
                 } else if (status == "203") {
-                    Toast.makeText(
-                        context,
-                        "Account has not been verified at registration desk",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Utils.simpleDialog(context,"Error","Account not verified at desk")
                 } else if (status == "401") {
-                    Toast.makeText(
-                        context,
-                        "Admin unauthorized to perform this action",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Utils.simpleDialog(context,"Error","Admin Unauthorized to perform this action")
                 } else if (status == "404") {
-                    Toast.makeText(context, "Celesta ID not found", Toast.LENGTH_SHORT).show()
+                    Utils.simpleDialog(context,"Error","Celesta ID not found")
                 } else
                     Toast.makeText(context, "Invalid status", Toast.LENGTH_SHORT).show()
             }
