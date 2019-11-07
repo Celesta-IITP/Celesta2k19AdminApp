@@ -59,9 +59,9 @@ class EventUsersAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int {
         if (is_team_event == 0)
-            return this.userList!!.size
+            return this.userList.size
         else
-            return this.teamUserList!!.size
+            return this.teamUserList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -79,7 +79,7 @@ class EventUsersAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun configureRegisteredUsersViewHolder(vh1: RegisteredUsersViewHolder, position: Int) {
-        val registeredUsers: RegisteredUsers = userList!!.get(position) as RegisteredUsers
+        val registeredUsers: RegisteredUsers = userList.get(position) as RegisteredUsers
         if (registeredUsers != null) {
             if (registeredUsers.name == null || registeredUsers.name == "") vh1.name.visibility =
                 View.GONE
@@ -96,7 +96,7 @@ class EventUsersAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun configureTeamDetailsViewHolder(vh2: TeamDetailsViewHolder, position: Int) {
-        val teamDetails: TeamDetails = teamUserList!!.get(position) as TeamDetails
+        val teamDetails: TeamDetails = teamUserList.get(position) as TeamDetails
         if (teamDetails != null) {
             if (teamDetails.team_name != "" && teamDetails.team_name != null) vh2.teamName.text =
                 "Team Name: ${teamDetails.team_name}"

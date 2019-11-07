@@ -88,8 +88,8 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(result: Result?) {
-        Log.e("qr: ", result!!.text)
-        val str = result!!.text.split("/")
+        Log.e("qr: ", result?.text)
+        val str = result?.text?.split("/") as Array<String>
         val bundle = bundleOf("celestaid" to str[0])
         Log.e("str: ", str[0])
         if (sourceFragment == "accommodation")

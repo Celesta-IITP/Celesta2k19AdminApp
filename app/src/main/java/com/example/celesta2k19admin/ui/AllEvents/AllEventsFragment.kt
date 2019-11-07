@@ -39,7 +39,7 @@ class AllEventsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        preferences = context!!.getSharedPreferences(Constants.PREF_FILENAME, 0)
+        preferences = requireContext().getSharedPreferences(Constants.PREF_FILENAME, 0)
         if (!preferences.getBoolean("login_status", false)) {
             Toast.makeText(context, "You need to login first", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.nav_login, null)
