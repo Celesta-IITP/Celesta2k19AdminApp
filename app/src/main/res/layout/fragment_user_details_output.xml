@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".ui.UserDetails.UserDetailsOutputFragment">
+    tools:context="in.org.celesta.admin.ui.UserDetails.UserDetailsOutputFragment">
 
     <TextView
         android:id="@+id/user_details_name"

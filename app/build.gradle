@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
     defaultConfig {
-        applicationId "com.example.celesta2k19admin"
+        applicationId "in.org.celesta.admin"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1

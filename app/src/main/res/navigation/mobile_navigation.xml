@@ -7,52 +7,52 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.celesta2k19admin.ui.home.HomeFragment"
+        android:name="in.org.celesta.admin.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.celesta2k19admin.ui.login.LoginFragment"
+        android:name="in.org.celesta.admin.ui.login.LoginFragment"
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/nav_checkin_checkout_user"
-        android:name="com.example.celesta2k19admin.ui.CheckinCheckout.CheckinCheckoutFragment"
+        android:name="in.org.celesta.admin.ui.CheckinCheckout.CheckinCheckoutFragment"
         android:label="@string/menu_checkin_checkout"
         tools:layout="@layout/fragment_checkin_checkout_user" />
 
     <fragment
         android:id="@+id/nav_all_events"
-        android:name="com.example.celesta2k19admin.ui.AllEvents.AllEventsFragment"
+        android:name="in.org.celesta.admin.ui.AllEvents.AllEventsFragment"
         android:label="@string/menu_all_events"
         tools:layout="@layout/fragment_all_events" />
 
     <fragment
         android:id="@+id/nav_event_users"
-        android:name="com.example.celesta2k19admin.ui.EventUsers.EventUsersFragment"
+        android:name="in.org.celesta.admin.ui.EventUsers.EventUsersFragment"
         android:label="Event Users"
         tools:layout="@layout/fragment_event_users" />
 
     <fragment
         android:id="@+id/nav_accommodation"
-        android:name="com.example.celesta2k19admin.ui.Accommodation.AccommodationFragment"
+        android:name="in.org.celesta.admin.ui.Accommodation.AccommodationFragment"
         android:label="@string/menu_accommodation"
         tools:layout="@layout/fragment_accommodation" />
 
     <fragment
         android:id="@+id/nav_scanQr"
-        android:name="com.example.celesta2k19admin.ui.ScanQrFragment"
+        android:name="in.org.celesta.admin.ui.ScanQrFragment"
         android:label="ScanQr" />
 
     <fragment
         android:id="@+id/nav_user_details"
-        android:name="com.example.celesta2k19admin.ui.UserDetails.UserDetailsFragment"
+        android:name="in.org.celesta.admin.ui.UserDetails.UserDetailsFragment"
         android:label="User Details" />
 
     <fragment
         android:id="@+id/nav_user_details_output"
-        android:name="com.example.celesta2k19admin.ui.UserDetails.UserDetailsOutputFragment"
+        android:name="in.org.celesta.admin.ui.UserDetails.UserDetailsOutputFragment"
         android:label="User Details Output" />
 </navigation>
