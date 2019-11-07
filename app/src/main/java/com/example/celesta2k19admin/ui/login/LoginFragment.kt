@@ -141,6 +141,4 @@ class LoginFragment : Fragment() {
         Toast.makeText(context, "Successfully Logged out", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.nav_login, null)
     }
-
-
 }

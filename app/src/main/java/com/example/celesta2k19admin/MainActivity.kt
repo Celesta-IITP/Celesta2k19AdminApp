@@ -1,6 +1,9 @@
 package com.example.celesta2k19admin
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.Preference
+import android.preference.PreferenceManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -11,10 +14,13 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.navigation.fragment.findNavController
+import com.example.celesta2k19admin.Constants.Constants
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
+        preferences = this.getSharedPreferences(Constants.PREF_FILENAME, 0)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -46,5 +53,14 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        val login_status = preferences.getBoolean("login_status",false)
+        if(login_status==false){
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home, null)
+        }else{
+            super.onBackPressed()
+        }
     }
 }
