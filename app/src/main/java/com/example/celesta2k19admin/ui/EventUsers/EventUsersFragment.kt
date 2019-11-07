@@ -40,7 +40,7 @@ class EventUsersFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        preferences = context!!.getSharedPreferences(Constants.PREF_FILENAME, 0)
+        preferences = requireContext().getSharedPreferences(Constants.PREF_FILENAME, 0)
         eventUsersViewModel =
             ViewModelProviders.of(this).get(EventUsersViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_event_users, container, false)
@@ -102,7 +102,9 @@ class EventUsersFragment : Fragment() {
                     //registered users
                     val regsiteredUsers = response.body()?.getRegisteredUsers()
                     Log.e("data:", regsiteredUsers.toString())
-                    eventUsersAdapter.setUserList(regsiteredUsers!!)
+                    if (regsiteredUsers != null) {
+                        eventUsersAdapter.setUserList(regsiteredUsers)
+                    }
                     eventUsersAdapter.setIsTeamEvent(is_team_event)
 
                 } else if (is_team_event == 1) {

@@ -42,7 +42,7 @@ class LoginFragment : Fragment() {
         loginEmail = rootView.findViewById(R.id.editext_login_email)
         loginPassword = rootView.findViewById(R.id.editext_login_password)
         progressBar = rootView.findViewById(R.id.layout_progress)
-        preferences = context!!.getSharedPreferences(Constants.PREF_FILENAME, 0)
+        preferences = requireContext().getSharedPreferences(Constants.PREF_FILENAME, 0)
         if (!preferences.getBoolean("login_status", false))
             button_login.text = "Tap to login"
         else {
@@ -150,6 +150,4 @@ class LoginFragment : Fragment() {
         requireActivity().finish()
         requireActivity().startActivity(Intent(context, MainActivity::class.java))
     }
-
-
 }

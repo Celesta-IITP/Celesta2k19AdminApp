@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.navigateUp
 import com.example.celesta2k19admin.R
 import com.google.zxing.Result
 import com.karumi.dexter.Dexter
@@ -88,8 +87,8 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(result: Result?) {
-        Log.e("qr: ", result!!.text)
-        val str = result!!.text.split("/")
+        Log.e("qr: ", result?.text)
+        val str = result?.text?.split("/") as List<String>
         val bundle = bundleOf("celestaid" to str[0])
         Log.e("str: ", str[0])
         if (sourceFragment == "accommodation")

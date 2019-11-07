@@ -2,6 +2,8 @@ package com.example.celesta2k19admin
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.Preference
+import android.preference.PreferenceManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -13,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import androidx.navigation.fragment.findNavController
+
 import com.example.celesta2k19admin.Constants.Constants
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navCheckinCheckout: MenuItem
     private lateinit var navAllEvents: MenuItem
     private lateinit var navAccommodation: MenuItem
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         preferences = applicationContext.getSharedPreferences(Constants.PREF_FILENAME, 0)
         val navController = findNavController(R.id.nav_host_fragment)
+        preferences = this.getSharedPreferences(Constants.PREF_FILENAME, 0)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -82,5 +88,14 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        val login_status = preferences.getBoolean("login_status",false)
+        if(login_status==false){
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home, null)
+        }else{
+            super.onBackPressed()
+        }
     }
 }

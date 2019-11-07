@@ -1,8 +1,6 @@
 package com.example.celesta2k19admin.ui.UserDetails
 
-import android.opengl.Visibility
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
