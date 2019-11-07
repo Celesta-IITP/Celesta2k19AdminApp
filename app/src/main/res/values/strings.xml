@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Celesta2k19Admin</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -9,9 +7,7 @@
     <string name="menu_login">Login/Logout</string>
     <string name="menu_checkin_checkout">Checkin-Checkout</string>
     <string name="menu_all_events">All Events</string>
-    <string name="menu_share">Share</string>
     <string name="menu_accommodation">Accommodation</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
