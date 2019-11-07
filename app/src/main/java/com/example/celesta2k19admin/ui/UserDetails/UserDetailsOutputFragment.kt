@@ -103,8 +103,10 @@ class UserDetailsOutputFragment : Fragment() {
             ) {
                 progressDialog?.dismiss()
                 val status = response.body()?.status
-                if (status != 200)
+                if (status != 200){
                     Utils.simpleDialog(context, "Error", response.body()?.message.toString())
+                    findNavController().navigate(R.id.nav_user_details,null)
+                }
                 else {
                     val list = response.body()?.events_registered
                     if (list != null)
