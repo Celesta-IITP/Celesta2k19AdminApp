@@ -1,5 +1,8 @@
 package com.example.celesta2k19admin.api
 
+import androidx.annotation.Keep
+
+@Keep
 class TeamDetails(
     val amount: Float = 0.00f,
     val cap_name: String = "",

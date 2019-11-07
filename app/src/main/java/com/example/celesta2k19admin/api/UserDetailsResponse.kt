@@ -1,5 +1,8 @@
 package com.example.celesta2k19admin.api
 
+import androidx.annotation.Keep
+
+@Keep
 data class UserDetailsResponse(
     var status: Int = 0,
     var message: String = "",

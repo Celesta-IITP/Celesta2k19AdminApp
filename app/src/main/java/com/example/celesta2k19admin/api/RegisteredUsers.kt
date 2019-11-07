@@ -1,5 +1,8 @@
 package com.example.celesta2k19admin.api
 
+import androidx.annotation.Keep
+
+@Keep
 data class RegisteredUsers(
     val name: String = "",
     val phone: String = "",

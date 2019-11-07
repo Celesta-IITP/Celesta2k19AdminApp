@@ -1,7 +1,9 @@
 package com.example.celesta2k19admin.api
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class CheckinCheckoutResponse(
     @SerializedName("status")
     private val status: String = "",

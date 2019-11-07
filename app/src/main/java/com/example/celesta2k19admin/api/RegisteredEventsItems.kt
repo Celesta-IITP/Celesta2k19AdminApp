@@ -1,5 +1,8 @@
 package com.example.celesta2k19admin.api
 
+import androidx.annotation.Keep
+
+@Keep
 data class RegisteredEventsItems(
     var ev_id: String = "",
     var amount: Float = 0.00f,

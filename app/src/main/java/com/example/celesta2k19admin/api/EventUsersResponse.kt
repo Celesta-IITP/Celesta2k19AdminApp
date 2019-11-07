@@ -1,5 +1,8 @@
 package com.example.celesta2k19admin.api
 
+import androidx.annotation.Keep
+
+@Keep
 data class EventUsersResponse(
     private val status: Int = 0,
     private val message: String = "",

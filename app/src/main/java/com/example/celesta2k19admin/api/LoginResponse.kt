@@ -1,5 +1,8 @@
 package com.example.celesta2k19admin.api
 
+import androidx.annotation.Keep
+
+@Keep
 data class LoginResponse(
     private val status: Int = 0,
     private val access_token: String = "",
