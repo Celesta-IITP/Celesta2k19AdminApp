@@ -9,16 +9,16 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Click on button to scan QR code to get all details of User"
         android:layout_margin="16dp"
-        android:textSize="20sp"/>
+        android:text="Click on button to scan QR code to get all details of User"
+        android:textSize="20sp" />
 
     <Button
+        android:id="@+id/button_scan_qr_user_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="center_horizontal"
-        android:text="Scan QR code"
-        android:id="@+id/button_scan_qr_user_details"/>
+        android:text="Scan QR code" />
 
 </LinearLayout>

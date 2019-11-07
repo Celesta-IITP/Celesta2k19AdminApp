@@ -13,6 +13,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.celesta2k19admin.Constants.Constants
 
 import com.example.celesta2k19admin.R
@@ -29,7 +31,6 @@ import retrofit2.Response
 class UserDetailsFragment : Fragment() {
     private lateinit var UserDetailButton: Button
     lateinit var preferences: SharedPreferences
-    private var progressDialog: ProgressDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +49,9 @@ class UserDetailsFragment : Fragment() {
         if (arguments?.getString("celestaid") != null) {
             val celestaid: String = arguments?.getString("celestaid").toString()
             Toast.makeText(context, "data: " + celestaid, Toast.LENGTH_SHORT).show()
-            getUserDetails(celestaid)
+//            getUserDetails(celestaid)
+            var bundle = bundleOf("celestaid" to celestaid)
+            findNavController().navigate(R.id.nav_user_details_output, bundle)
         }
 
         return rootView
@@ -66,45 +69,5 @@ class UserDetailsFragment : Fragment() {
         }
     }
 
-    fun getUserDetails(celestaId: String) {
-        progressDialog = ProgressDialog(context)
-        progressDialog?.setCancelable(false)
-        progressDialog?.setMessage("Processing...")
-        progressDialog?.show()
 
-        val retrofitApi = RetrofitApi.create()
-
-        val access_token = RequestBody.create(
-            MediaType.parse("text/plain"),
-            preferences.getString("access_token", "")
-        )
-        val permit =
-            RequestBody.create(MediaType.parse("text/plain"), preferences.getString("permit", ""))
-        val celestaid = RequestBody.create(MediaType.parse("text/plain"), celestaId)
-        val email =
-            RequestBody.create(MediaType.parse("text/plain"), preferences.getString("email", ""))
-
-        val call = retrofitApi.getUserDetails(access_token, permit, email, celestaid)
-
-        call.enqueue(object : Callback<UserDetailsResponse> {
-            override fun onFailure(call: Call<UserDetailsResponse>, t: Throwable) {
-                progressDialog?.dismiss()
-                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
-                Log.e("Error: ", t.message)
-            }
-
-            override fun onResponse(
-                call: Call<UserDetailsResponse>,
-                response: Response<UserDetailsResponse>
-            ) {
-                progressDialog?.dismiss()
-                val status = response.body()?.status
-                if (status != 200)
-                    Utils.simpleDialog(context, "Error", response.body()?.message.toString())
-                else {
-                    Utils.simpleDialog(context, "Success", response.body().toString())
-                }
-            }
-        })
-    }
 }

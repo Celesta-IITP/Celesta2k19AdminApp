@@ -97,7 +97,7 @@ class ScanQrFragment : Fragment(), ZXingScannerView.ResultHandler {
         else if (sourceFragment == "checkin-checkout")
             findNavController().navigate(R.id.nav_checkin_checkout_user, bundle)
         else if (sourceFragment == "user_details")
-            findNavController().navigate(R.id.nav_user_details, bundle)
+            findNavController().navigate(R.id.nav_user_details_output, bundle)
     }
 }
 
