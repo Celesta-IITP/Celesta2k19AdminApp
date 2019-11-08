@@ -55,4 +55,9 @@
         android:id="@+id/nav_user_details_output"
         android:name="in.org.celesta.admin.ui.UserDetails.UserDetailsOutputFragment"
         android:label="User Details Output" />
+
+    <fragment
+        android:id="@+id/nav_accommodation_users"
+        android:name="in.org.celesta.admin.ui.AccommodationUsers.AccommodationUsersFragment"
+        android:label="Accommodation Users" />
 </navigation>
