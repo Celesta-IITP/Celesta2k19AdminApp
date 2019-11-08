@@ -23,6 +23,9 @@
         <item
             android:id="@+id/nav_accommodation"
             android:title="@string/menu_accommodation" />
+        <item
+            android:id="@+id/nav_accommodation_users"
+            android:title="Accommodation Users List" />
 
     </group>
 </menu>

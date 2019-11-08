@@ -51,6 +51,13 @@ interface RetrofitApi {
         @Part("email") email: RequestBody, @Part("celestaid") celestaid: RequestBody
     ): Call<UserDetailsResponse>
 
+    @Multipart
+    @POST("accommodation.php")
+    fun getAccommodationUsers(
+        @Part("access_token") access_token: RequestBody, @Part("permit") permit: RequestBody,
+        @Part("email") email: RequestBody
+    ): Call<AccommodationUsersResponse>
+
 
     companion object Factory {
         fun create(): RetrofitApi {

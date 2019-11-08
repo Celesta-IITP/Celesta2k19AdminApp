@@ -22,6 +22,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeAllEventsButton: Button
     private lateinit var homeUserDetailsButton: Button
     private lateinit var homeAccommodationButton: Button
+    private lateinit var homeAccommodationUsersButton: Button
     private lateinit var preferences: SharedPreferences
 
     override fun onCreateView(
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         homeLoginButton = root.findViewById(R.id.home_login_button)
         homeUserDetailsButton = root.findViewById(R.id.home_user_details_button)
 
+        homeAccommodationUsersButton = root.findViewById(R.id.home_accommodation_users_button)
         homeCheckinCheckoutButton = root.findViewById(R.id.home_checkin_checkout_button)
         homeAllEventsButton = root.findViewById(R.id.home_all_events_button)
         homeAccommodationButton = root.findViewById(R.id.home_accommodation_button)
@@ -50,23 +52,27 @@ class HomeFragment : Fragment() {
             homeAccommodationButton.visibility = View.VISIBLE
             homeUserDetailsButton.visibility = View.VISIBLE
             homeAllEventsButton.visibility = View.GONE
+            homeAccommodationUsersButton.visibility = View.VISIBLE
         } else if (permit == "3") {
             homeCheckinCheckoutButton.visibility = View.GONE
             homeAccommodationButton.visibility = View.GONE
             homeUserDetailsButton.visibility = View.VISIBLE
             homeAllEventsButton.visibility = View.GONE
+            homeAccommodationUsersButton.visibility = View.GONE
         }
         if (permit == "4") {
             homeCheckinCheckoutButton.visibility = View.GONE
             homeAccommodationButton.visibility = View.GONE
             homeUserDetailsButton.visibility = View.VISIBLE
             homeAllEventsButton.visibility = View.VISIBLE
+            homeAccommodationUsersButton.visibility = View.GONE
         }
         if (permit == "5") {
             homeCheckinCheckoutButton.visibility = View.GONE
             homeAccommodationButton.visibility = View.VISIBLE
             homeUserDetailsButton.visibility = View.VISIBLE
             homeAllEventsButton.visibility = View.GONE
+            homeAccommodationUsersButton.visibility = View.VISIBLE
         }
 
         return root
@@ -88,6 +94,9 @@ class HomeFragment : Fragment() {
         }
         homeAccommodationButton.setOnClickListener { view ->
             findNavController().navigate(R.id.nav_accommodation, null)
+        }
+        homeAccommodationUsersButton.setOnClickListener { v ->
+            findNavController().navigate(R.id.nav_accommodation_users, null)
         }
     }
 }

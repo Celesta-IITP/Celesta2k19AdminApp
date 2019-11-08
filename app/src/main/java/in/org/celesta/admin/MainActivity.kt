@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navCheckinCheckout: MenuItem
     private lateinit var navAllEvents: MenuItem
     private lateinit var navAccommodation: MenuItem
+    private lateinit var navAccommodationUsers: MenuItem
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         navAccommodation = menu.findItem(R.id.nav_accommodation)
         navAllEvents = menu.findItem(R.id.nav_all_events)
         navCheckinCheckout = menu.findItem(R.id.nav_checkin_checkout_user)
+        navAccommodationUsers = menu.findItem(R.id.nav_accommodation_users)
 
         preferences = applicationContext.getSharedPreferences(Constants.PREF_FILENAME, 0)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_checkin_checkout_user,
                 R.id.nav_all_events,
                 R.id.nav_user_details,
-                R.id.nav_accommodation
+                R.id.nav_accommodation,
+                R.id.nav_accommodation_users
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -63,18 +66,22 @@ class MainActivity : AppCompatActivity() {
             navAllEvents.setVisible(false)
             navCheckinCheckout.setVisible(true)
             navAccommodation.setVisible(true)
+            navAccommodationUsers.setVisible(true)
         } else if (preferences.getString("permit", "") == "3") {
             navAllEvents.setVisible(false)
             navCheckinCheckout.setVisible(false)
             navAccommodation.setVisible(false)
+            navAccommodationUsers.setVisible(false)
         } else if (preferences.getString("permit", "") == "4") {
             navAccommodation.setVisible(false)
             navCheckinCheckout.setVisible(false)
             navAllEvents.setVisible(true)
+            navAccommodationUsers.setVisible(false)
         } else if (preferences.getString("permit", "") == "5") {
             navAllEvents.setVisible(false)
             navCheckinCheckout.setVisible(false)
             navAccommodation.setVisible(true)
+            navAccommodationUsers.setVisible(true)
         }
 
     }

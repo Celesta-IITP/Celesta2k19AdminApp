@@ -65,5 +65,15 @@
         android:textColor="@color/white"
         android:layout_gravity="center_horizontal"/>
 
+    <Button
+        android:id="@+id/home_accommodation_users_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Accommodation User List"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"/>
+
 
 </LinearLayout>
