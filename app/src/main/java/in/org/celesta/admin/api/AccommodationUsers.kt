@@ -1,5 +1,8 @@
 package `in`.org.celesta.admin.api
 
+import androidx.annotation.Keep
+
+@Keep
 class AccommodationUsers(
     var celestaid: String = "",
     var names: String = "",
